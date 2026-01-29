@@ -1,0 +1,34 @@
+{
+  "case_id": "chatgpt_release_2022w48",
+  "timezone_storage": "UTC",
+  "window_start_utc": "2022-11-28T00:00:00Z",
+  "window_end_utc": "2022-12-05T00:00:00Z",
+  "keywords": ["ChatGPT"],
+  "trends": {
+    "method": "manual_export",
+    "term_or_topic": "...",
+    "geo": "Worldwide",
+    "gprop": "web",
+    "export_time_local": "YYYY-MM-DDTHH:MM:SS+09:00"
+  },
+  "gdelt": {
+    "query": "...",
+    "mode": "timelinevolraw",
+    "format": "csv",
+    "download_time_utc": "YYYY-MM-DDTHH:MM:SSZ"
+  },
+  "twitter_kaggle": {
+    "dataset_slug": "owner/dataset",
+    "license": "...",
+    "download_time_utc": "YYYY-MM-DDTHH:MM:SSZ",
+    "fields_used": ["created_at","text","lang","is_retweet"]
+  },
+  "processing": {
+    "resample": "1H",
+    "missing_fill": {
+      "twitter": "0",
+      "gdelt": "0",
+      "trends": "interpolate_linear"
+    }
+  }
+}
