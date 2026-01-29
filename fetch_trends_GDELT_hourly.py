@@ -25,13 +25,20 @@ META_FILE = "meta.json"
 GDELT_DOC_API = "https://api.gdeltproject.org/api/v2/doc/doc"
 
 # 每页大小：Doc API支持maxrecords，常用 250；太大可能被拒
-MAX_RECORDS = 250
+MAX_RECORDS = 100
 
 # 轻微限速，避免被暂时封
 SLEEP_SECONDS = 0.2
 
 # 网络请求超时
 TIMEOUT = 30
+
+# 重试配置（429/5xx 会触发）
+MAX_RETRIES = 6
+BACKOFF_BASE_SECONDS = 2
+BACKOFF_CAP_SECONDS = 60
+
+SESSION = requests.Session()
 
 # =========================
 # Helpers
@@ -98,9 +105,31 @@ def fetch_page(query: str, startdt: str, enddt: str, start: int):
         "startrecord": start,     # 1-based index
         "sort": "HybridRel"       # 相关性+时间混合排序（你也可改成 'datedesc'）
     }
-    r = requests.get(GDELT_DOC_API, params=params, timeout=TIMEOUT)
-    r.raise_for_status()
-    return r.json()
+
+    last_error = None
+    for attempt in range(1, MAX_RETRIES + 1):
+        r = SESSION.get(GDELT_DOC_API, params=params, timeout=TIMEOUT)
+
+        if r.status_code == 429 or 500 <= r.status_code < 600:
+            # 429/5xx：退避重试（优先使用 Retry-After）
+            retry_after = r.headers.get("Retry-After")
+            if retry_after and retry_after.isdigit():
+                sleep_seconds = int(retry_after)
+            else:
+                sleep_seconds = min(BACKOFF_CAP_SECONDS, BACKOFF_BASE_SECONDS ** attempt)
+
+            print(f"[WARN] HTTP {r.status_code}, retry in {sleep_seconds}s (attempt {attempt}/{MAX_RETRIES})")
+            time.sleep(sleep_seconds)
+            last_error = r
+            continue
+
+        r.raise_for_status()
+        return r.json()
+
+    # 超过最大重试仍失败
+    if last_error is not None:
+        last_error.raise_for_status()
+    raise RuntimeError("GDELT request failed without response")
 
 def parse_seendate_to_hour_utc(seendate_str: str) -> datetime:
     """

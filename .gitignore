@@ -1,0 +1,105 @@
+# =======================
+# Python / 通用忽略规则
+# =======================
+
+# Python 字节码与缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 虚拟环境与依赖目录
+.venv/
+venv/
+env/
+ENV/
+.conda/
+
+# 构建/打包产物
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# 测试与覆盖率
+.pytest_cache/
+.tox/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+nosetests.xml
+
+# 类型检查与静态分析缓存
+.mypy_cache/
+.pytype/
+.pyre/
+.ruff_cache/
+
+# Jupyter / 交互式缓存
+.ipynb_checkpoints/
+
+# 日志与临时文件
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*.stackdump
+tmp/
+temp/
+
+# 进程/运行时文件
+*.pid
+
+# -----------------------
+# 数据与中间产物（建议）
+# -----------------------
+# 仅忽略中间与输出数据，保留 raw 数据可版本控制
+data/interim/
+data/processed/
+data/output/
+data/outputs/
+data/cache/
+data/tmp/
+
+# -----------------------
+# 本地配置与环境变量
+# -----------------------
+.env
+.env.*
+*.env
+*.local
+
+# -----------------------
+# 编辑器 / IDE
+# -----------------------
+.vscode/
+.idea/
+.project
+.classpath
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# -----------------------
+# 操作系统杂项
+# -----------------------
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# -----------------------
+# 可选：大体积数据文件（如需版本控制请注释/删除）
+# -----------------------
+*.csv
+*.tsv
+*.parquet
+*.jsonl
+*.npy
+*.npz
+*.pkl
+*.joblib

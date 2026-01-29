@@ -9,18 +9,18 @@
     "term_or_topic": "...",
     "geo": "Worldwide",
     "gprop": "web",
-    "export_time_local": "YYYY-MM-DDTHH:MM:SS+09:00"
+    "export_time_local": "2026-01-29T18:53:51+00:00"
   },
   "gdelt": {
-    "query": "...",
+    "query": "\"ChatGPT\" OR \"OpenAI ChatGPT\"",
     "mode": "timelinevolraw",
     "format": "csv",
-    "download_time_utc": "YYYY-MM-DDTHH:MM:SSZ"
+    "download_time_utc": "2026-01-29T19:52:54Z"
   },
   "twitter_kaggle": {
     "dataset_slug": "owner/dataset",
     "license": "...",
-    "download_time_utc": "YYYY-MM-DDTHH:MM:SSZ",
+    "download_time_utc": "2026-01-29T19:54:54Z",
     "fields_used": ["created_at","text","lang","is_retweet"]
   },
   "processing": {
