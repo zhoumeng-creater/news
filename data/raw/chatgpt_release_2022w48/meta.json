@@ -19,7 +19,7 @@
   },
   "twitter_kaggle": {
     "dataset_slug": "owner/dataset",
-    "license": "...",
+    "license": "MIT",
     "download_time_utc": "2026-01-29T19:54:54Z",
     "fields_used": ["created_at","text","lang","is_retweet"]
   },
