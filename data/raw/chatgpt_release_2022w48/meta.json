@@ -1,15 +1,23 @@
 {
   "case_id": "chatgpt_release_2022w48",
   "timezone_storage": "UTC",
-  "window_start_utc": "2022-11-28T00:00:00Z",
-  "window_end_utc": "2022-12-05T00:00:00Z",
-  "keywords": ["ChatGPT"],
+  "window_start_utc": "2022-11-30T00:00:00Z",
+  "window_end_utc": "2022-12-06T23:00:00Z",
+  "keywords": [
+    "ChatGPT"
+  ],
   "trends": {
     "method": "manual_export",
     "term_or_topic": "...",
     "geo": "Worldwide",
     "gprop": "web",
-    "export_time_local": "2026-01-29T18:53:51+00:00"
+    "export_time_local": "2026-01-29T18:53:51+00:00",
+    "timezone_infer": {
+      "time_column": "datetime_utc",
+      "mode": "source",
+      "source_tz": "UTC",
+      "note": "时间列自带时区标记，直接转 UTC"
+    }
   },
   "gdelt": {
     "query": "\"ChatGPT\" OR \"OpenAI ChatGPT\"",
@@ -18,16 +26,31 @@
     "download_time_utc": "2026-01-29T19:52:54Z"
   },
   "twitter_kaggle": {
-    "dataset_slug": "owner/dataset",
-    "license": "MIT",
+    "dataset_slug": "manishabhatt22/tweets-onchatgpt-chatgpt",
+    "source_url": "https://www.kaggle.com/datasets/manishabhatt22/tweets-onchatgpt-chatgpt",
+    "license": "CC0: Public Domain",
+    "dataset_version": 3,
+    "dataset_last_updated_utc": "2023-04-10T03:00:31.003Z",
     "download_time_utc": "2026-01-29T19:54:54Z",
-    "fields_used": ["created_at","text","lang","is_retweet"]
+    "time_field": "created_at",
+    "time_field_source": "Date（kaggle_timeline.csv）/ 第一列（kaggle_data.xlsx）",
+    "fields_used": [
+      "created_at",
+      "text",
+      "is_retweet"
+    ]
   },
   "processing": {
     "resample": "1H",
+    "time_index": {
+      "type": "complete_hourly",
+      "basis": "window_start_utc~window_end_utc",
+      "freq": "1H",
+      "timezone": "UTC"
+    },
     "missing_fill": {
-      "twitter": "0",
-      "gdelt": "0",
+      "twitter": 0,
+      "gdelt": 0,
       "trends": "interpolate_linear"
     }
   }

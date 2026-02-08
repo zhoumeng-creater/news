@@ -160,8 +160,8 @@ def fetch_hourly_google_trends(
 
 if __name__ == "__main__":
     keyword = "ChatGPT"
-    start_utc = "2022-11-28 00:00:00Z"
-    end_utc = "2022-12-05 00:00:00Z"
+    start_utc = "2022-11-30 00:00:00Z"
+    end_utc = "2022-12-06 00:00:00Z"
 
     save_dir = r"E:\OneDrive - Coventry University\个人工作\新闻归因\code\data\raw\chatgpt_release_2022w48"
     filename = "trends_interest_over_time.csv"
