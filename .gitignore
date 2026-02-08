@@ -63,6 +63,7 @@ data/output/
 data/outputs/
 data/cache/
 data/tmp/
+data/raw/
 
 # -----------------------
 # 本地配置与环境变量
